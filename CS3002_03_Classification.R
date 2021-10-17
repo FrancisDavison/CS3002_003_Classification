@@ -11,8 +11,9 @@ winevaluesTrain = winedata[1:100,]
 wineclassTest = wineclass[100:178]
 winevaluesTest = winevalues[100:178,]
 
+#install.packages("rpart")
 library(rpart)
 fit <- rpart(wineclassTrain~., method="class", data=winevaluesTrain)
 
-plot(fit, uniform=TRUE, main="Decision Treee for WineData3")
+plot(fit, uniform=TRUE, main="Decision Treee for WineData")
 text(fit, use.n=TRUE, all=TRUE, cex=.8)
