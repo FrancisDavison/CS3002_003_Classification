@@ -1,6 +1,6 @@
-winedata = read.csv('C:\\Users\\Picard\\Dropbox\\Github\\CS3002_003_Classification\\winedata3.csv', sep=",")
+winedata = read.csv('.\\winedata3.csv', sep=",") #reads csv file into R,values seperated by commas
 
-wineclass = winedata[,1]
+WineClass = winedata[,1]
 winevalues = winedata[,-1]
 
 #set up training set
@@ -11,9 +11,15 @@ winevaluesTrain = winedata[1:100,]
 wineclassTest = wineclass[100:178]
 winevaluesTest = winevalues[100:178,]
 
-#install.packages("rpart")
+#install.packages("rpart") #only needs to be installed once so can be left commented most of the time
 library(rpart)
 fit <- rpart(wineclassTrain~., method="class", data=winevaluesTrain)
 
-plot(fit, uniform=TRUE, main="Decision Treee for WineData")
+plot(fit, uniform=TRUE, main="Decision Treee for WineData3")
 text(fit, use.n=TRUE, all=TRUE, cex=.8)
+
+treepred <- predict(fit, winevaluesTest, type = 'class')
+n = length(wineclassTest) #the number of test cases
+ncorrect = sum(treepred==wineclassTest) #the number of correctly predicted
+accuracy=ncorrect/n
+print(accuracy)
