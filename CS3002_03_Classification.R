@@ -1,6 +1,6 @@
-winedata = read.csv('.\\winedata3.csv', sep=",") #reads csv file into R,values seperated by commas
+winedata = read.csv('/home/defiant/Dropbox/Github/CS3002_03_Classification/winedata3.csv', sep=",") #reads csv file into R,values seperated by commas
 
-WineClass = winedata[,1]
+Wineclass = winedata[,1]
 winevalues = winedata[,-1]
 
 #set up training set
