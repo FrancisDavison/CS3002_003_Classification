@@ -1,4 +1,4 @@
-winedata = read.csv(home\\defiant\\Dropbox\\Github\\CS3002_02_Clustering\\Progress From Library\\CS3002_03_Classification\\winedata3.csv, sep=",")
+winedata = read.csv('C:\\Users\\Picard\\Dropbox\\Github\\CS3002_03_Classification\\winedata.csv', sep=",")
 
 wineclass = winedata[,1]
 winevalues = winedata[,-1]
