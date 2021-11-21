@@ -14,6 +14,7 @@ seedsvaluesTrain = seedsvalues[1:120,]
 seedsclassTest = seedsclass[120:208]
 seedsvaluesTest = seedsvalues[120:208,]
 
+
 #DECISION TREE
 
 #Build decision tree with Rpart
@@ -38,10 +39,15 @@ print(accuracy)
 table_mat = table(seedsclassTest, treepred)
 print(table_mat)
 
+#IS THIS PART CORRECT?!?!?!?!?!?!?!?!?!?!?!?!!?!?!?!?!?!?!?!?!?!?!?!?!!??! Hopefuly correct for Q2?
 #prune decision tree
 pfit<- prune(fit, cp=0.1)
 plot(pfit, uniform=TRUE, main="Pruned Decision Tree for SeedsData")
 text(pfit, use.n=TRUE, all=TRUE, cex=.8)
+#Try with a for loop and just chance the value of CP from 0 to 1 with increments of 0.01
+
+#printcp(fit, digits=getOption("digits")-2)
+#(pfit, minline=TRUE, lty=3, col=1, upper=c("none"))
 
 
 #KNN
