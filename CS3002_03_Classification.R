@@ -62,3 +62,4 @@ n = length(seedsclassTest) #the number of test cases
 ncorrect = sum(knn3pred==seedsclassTest) #the number of correctly predicted
 accuracy=ncorrect/n
 print(accuracy)
+
