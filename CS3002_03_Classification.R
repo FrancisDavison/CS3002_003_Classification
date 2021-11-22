@@ -3,8 +3,9 @@
 setwd("C:\\Users\\Janeway\\Dropbox\\Github\\CS3002_03_Classification") #Set Working Directory Laptop
 
 #Read in data and create randomised data set
-seedsData = read.csv('.\\seeds_data.csv', sep=",") #CSV Read
-seeds_rand=seedsData[sample(150,150),] #randomises the dataset to allow training
+seedsData = read.csv('.\\seeds_rand.csv', sep=",") #CSV Read
+#seeds_rand=seedsData[sample(150,150),] #randomises the dataset to allow training
+#write.csv(seeds_rand,'seeds_rand.csv')
 
 #creating seedsclass and seedsvalues dataframes
 seedsclass = seeds_rand[,1] #Selects Class values from Column 1 of seeds_rand
@@ -18,9 +19,7 @@ seedsvaluesTrain = seedsvalues[1:84,] #Selects Values Training data from seedsva
 seedsclassTest = seedsclass[84:150] #Selects class test data from unused part of seedsclass
 seedsvaluesTest = seedsvalues[84:150,] #Selects values test data from unused part of seedsvlaues
 
-min=0
-max=1
-interval=0.01
+
 prune_temp <- data.frame()
 prune_store <- data.frame()
 
@@ -59,9 +58,9 @@ print(table_mat)
 #p_ncorrect=sum(p_treepred==seedsclassTest)
 #p_accuracy=p_ncorrect/n
 #print(p_accuracy)
+m_accuracy=0
 
-
-for(i in seq(from=0,to=1,by=0.01))
+for(i in seq(from=0,to=1,by=0.1))
 {
   fit_temp=fit
   pfit_temp<- prune(fit_temp, cp=i)
@@ -69,12 +68,16 @@ for(i in seq(from=0,to=1,by=0.01))
   #text(pfit_temp, use.n=TRUE, all=TRUE, cex=.8)
   
   p_treepred <- predict(pfit_temp, seedsvaluesTest, type='class')
-  p_n=length(seedsclassTest)
   p_ncorrect=sum(p_treepred==seedsclassTest)
   p_accuracy=p_ncorrect/n
   output=data.frame(i,p_accuracy)
   print(output)
   prune_store <- rbind(prune_store, output)
+  if(p_accuracy>m_accuracy)
+  {
+    m_accuracy=p_accuracy
+    best_tree=pfit_temp
+  }
 }
 plot(prune_store)
 #printcp(fit, digits=getOption("digits")-2)
