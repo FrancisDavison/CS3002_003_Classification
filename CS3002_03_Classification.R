@@ -85,6 +85,19 @@ plot(prune_store)
 rpart.plot(best_tree)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 for(i in seq(from=1,to=10,by=1))
 {
   knn3pred = knn(seedsvaluesTrain, seedsvaluesTest, seedsclassTrain, k=i)
