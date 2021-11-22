@@ -21,6 +21,8 @@ seedsvaluesTest = seedsvalues[84:150,] #Selects values test data from unused par
 min=0
 max=1
 interval=0.01
+prune_temp <- data.frame()
+prune_store <- data.frame()
 
 #DECISION TREE
 
@@ -46,18 +48,35 @@ print(accuracy)
 table_mat = table(seedsclassTest, treepred)
 print(table_mat)
 
-#IS THIS PART CORRECT?!?!?!?!?!?!?!?!?!?!?!?!!?!?!?!?!?!?!?!?!?!?!?!?!!??! Hopefuly correct for Q2?
 #prune decision tree
-pfit<- prune(fit, cp=0.1)
-plot(pfit, uniform=TRUE, main="Pruned Decision Tree for SeedsData")
-text(pfit, use.n=TRUE, all=TRUE, cex=.8)
+#pfit<- prune(fit, cp=0.5)
+#plot(pfit, uniform=TRUE, main="Pruned Decision Tree for SeedsData")
+#text(pfit, use.n=TRUE, all=TRUE, cex=.8)
 #Try with a for loop and just chance the value of CP from 0 to 1 with increments of 0.01
 
-for(i in min:max, 1)
-{
-  
-}
+#p_treepred <- predict(pfit, seedsvaluesTest, type='class')
+#p_n=length(seedsclassTest)
+#p_ncorrect=sum(p_treepred==seedsclassTest)
+#p_accuracy=p_ncorrect/n
+#print(p_accuracy)
 
+
+for(i in seq(from=0,to=1,by=0.01))
+{
+  fit_temp=fit
+  pfit_temp<- prune(fit_temp, cp=i)
+  #plot(pfit_temp, uniform=TRUE, main="Pruned Decision Tree for SeedsData")
+  #text(pfit_temp, use.n=TRUE, all=TRUE, cex=.8)
+  
+  p_treepred <- predict(pfit_temp, seedsvaluesTest, type='class')
+  p_n=length(seedsclassTest)
+  p_ncorrect=sum(p_treepred==seedsclassTest)
+  p_accuracy=p_ncorrect/n
+  output=data.frame(i,p_accuracy)
+  print(output)
+  prune_store <- rbind(prune_store, output)
+}
+plot(prune_store)
 #printcp(fit, digits=getOption("digits")-2)
 #(pfit, minline=TRUE, lty=3, col=1, upper=c("none"))
 
