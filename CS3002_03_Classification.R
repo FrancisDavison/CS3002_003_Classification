@@ -1,13 +1,20 @@
 #Set Working Directory
-#setwd("C:\\Users\\Picard\\Dropbox\\Github\\CS3002_03_Classification") #Set Working Directory Desktop
-setwd("C:\\Users\\Janeway\\Dropbox\\Github\\CS3002_03_Classification") #Set Working Directory Laptop
+
+if((Sys.info()["nodename"])=="JANEWAY")
+{
+  setwd("C:\\Users\\Janeway\\Dropbox\\Github\\CS3002_03_Classification")
+  print("Working Directory set to C:\\Users\\Janeway\\Dropbox\\Github\\CS3002_03_Classification")
+}
+if((Sys.info()["nodename"])=="PICARD")
+{
+  setwd("C:\\Users\\Picard\\Dropbox\\Github\\CS3002_03_Classification")
+  print("Working directory set to C:\\Users\\Picard\\Dropbox\\Github\\CS3002_03_Classification")
+}
+
 
 #Read in data and create randomised data set
 seedsData = read.csv('.\\seeds_data.csv', sep=",") #CSV Read
 seeds_rand=seedsData[sample(150,150),] #randomises the dataset to allow training
-
-#write.csv(seeds_rand,'seeds_rand.csv')
-#seeds_rand = read.csv('.\\seeds_rand.csv', sep=",") #CSV Read
 
 #creating seedsclass and seedsvalues dataframes
 seedsclass = seeds_rand[,1] #Selects Class values from Column 1 of seeds_rand
