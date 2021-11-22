@@ -1,5 +1,4 @@
 #Set Working Directory
-
 if((Sys.info()["nodename"])=="JANEWAY")
 {
   setwd("C:\\Users\\Janeway\\Dropbox\\Github\\CS3002_03_Classification")
@@ -10,7 +9,6 @@ if((Sys.info()["nodename"])=="PICARD")
   setwd("C:\\Users\\Picard\\Dropbox\\Github\\CS3002_03_Classification")
   print("Working directory set to C:\\Users\\Picard\\Dropbox\\Github\\CS3002_03_Classification")
 }
-
 
 #Read in data and create randomised data set
 seedsData = read.csv('.\\seeds_data.csv', sep=",") #CSV Read
@@ -33,6 +31,7 @@ prune_store <- data.frame()
 pt_accuracy_store <- data.frame()
 knn_accuracy_store <- data.frame()
 knn_pt_compare <- data.frame()
+knn_pt_temp_compare <- data.frame()
 
 library(rpart.plot) #Imports Rpart library
 library(class)
