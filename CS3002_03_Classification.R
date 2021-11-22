@@ -4,20 +4,23 @@ setwd("C:\\Users\\Janeway\\Dropbox\\Github\\CS3002_03_Classification") #Set Work
 
 #Read in data and create randomised data set
 seedsData = read.csv('.\\seeds_data.csv', sep=",") #CSV Read
-seeds_rand=seedsData[sample(209,209),] #randomises the dataset to allow training
+seeds_rand=seedsData[sample(150,150),] #randomises the dataset to allow training
 
 #creating seedsclass and seedsvalues dataframes
-seedsclass = seeds_rand[,1]
-seedsvalues = seeds_rand[,-1]
+seedsclass = seeds_rand[,1] #Selects Class values from Column 1 of seeds_rand
+seedsvalues = seeds_rand[,-1] #sELECTS seed values from seeds_rand
 
 #set up a training set
-seedsclassTrain = seedsclass[1:120]
-seedsvaluesTrain = seedsvalues[1:120,]
+seedsclassTrain = seedsclass[1:84] #Selects Class Training data from Seedsclass
+seedsvaluesTrain = seedsvalues[1:84,] #Selects Values Training data from seedsvalues
 
 #and testset
-seedsclassTest = seedsclass[120:208]
-seedsvaluesTest = seedsvalues[120:208,]
+seedsclassTest = seedsclass[84:150] #Selects class test data from unused part of seedsclass
+seedsvaluesTest = seedsvalues[84:150,] #Selects values test data from unused part of seedsvlaues
 
+min=0
+max=1
+interval=0.01
 
 #DECISION TREE
 
@@ -49,6 +52,11 @@ pfit<- prune(fit, cp=0.1)
 plot(pfit, uniform=TRUE, main="Pruned Decision Tree for SeedsData")
 text(pfit, use.n=TRUE, all=TRUE, cex=.8)
 #Try with a for loop and just chance the value of CP from 0 to 1 with increments of 0.01
+
+for(i in min:max, 1)
+{
+  
+}
 
 #printcp(fit, digits=getOption("digits")-2)
 #(pfit, minline=TRUE, lty=3, col=1, upper=c("none"))
