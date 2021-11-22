@@ -1,5 +1,9 @@
+#Set Working Directory
+#setwd("C:\\Users\\Picard\\Dropbox\\Github\\CS3002_03_Classification") #Set Working Directory Desktop
+setwd("C:\\Users\\Janeway\\Dropbox\\Github\\CS3002_03_Classification") #Set Working Directory Laptop
+
 #Read in data and create randomised data set
-seedsData = read.csv('C:\\Users\\Picard\\Dropbox\\Github\\CS3002_03_Classification\\seeds_data.csv', sep=",")
+seedsData = read.csv('.\\seeds_data.csv', sep=",") #CSV Read
 seeds_rand=seedsData[sample(209,209),] #randomises the dataset to allow training
 
 #creating seedsclass and seedsvalues dataframes
