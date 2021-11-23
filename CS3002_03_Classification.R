@@ -53,12 +53,8 @@ treepred <-predict(fit, seedsvaluesTest, type = 'class')
 
 #compare predections to actual test case values to get accuracy
 n = length(seedsclassTest) #the number of test cases
-ncorrect = sum(treepred==seedsclassTest) #the number of correctly predicted
-accuracy=ncorrect/n
-
-# results as confusion matrix
-#table_mat = table(seedsclassTest, treepred)
-#print(table_mat)
+ncorrect = sum(treepred==seedsclassTest) #the number of correctly predicted values
+accuracy=ncorrect/n #calculates accuracy
 
 m_accuracy=0
 
