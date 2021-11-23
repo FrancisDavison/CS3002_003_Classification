@@ -56,12 +56,12 @@ n = length(seedsclassTest) #the number of test cases
 ncorrect = sum(treepred==seedsclassTest) #the number of correctly predicted values
 accuracy=ncorrect/n #calculates accuracy
 
-m_accuracy=0
+m_accuracy=0 #sets max accuracy to 0 before Pruning
 
 #part 2
-for(i in seq(from=0.1,to=1,by=0.1))
+for(i in seq(from=0.1,to=1,by=0.1)) #for loop
 {
-  fit_temp=fit
+  fit_temp=fit #sets fit_temp equal to fit, so as not to alter origional fit variable
   pfit_temp<- prune(fit_temp, cp=i)
   p_treepred <- predict(pfit_temp, seedsvaluesTest, type='class')
   p_ncorrect=sum(p_treepred==seedsclassTest)
@@ -81,7 +81,7 @@ plot(seeds_rand[,2], seeds_rand[,3], main="Seed area against seed perimeter", co
 
 plot(prune_store, mai="Accuracy against CP value (i)")
 rpart.plot(best_tree, main="Best Learned Tree After Pruning")
-print(m_accuracy)
+#print(m_accuracy)
 
 #part 4
 for(k in seq(from=1,to=10,by=1))
